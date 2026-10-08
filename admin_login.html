@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login — CampusFix</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+    <div style="background: #1e293b; padding: 40px; border-radius: 12px; border: 1px solid #e11d48; width: 350px;">
+        <h2 style="color: #fb923c; text-align: center; margin-top: 0;">Admin Portal Login</h2>
+        
+        {% if error %}
+            <p style="color: #f87171; font-size: 0.9em; text-align: center;">{{ error }}</p>
+        {% endif %}
+
+        <form action="/login/admin" method="POST">
+            <div class="field" style="margin-bottom: 15px;">
+                <label style="color: #94a3b8;">ADMIN USERNAME</label>
+                <input type="text" name="username" placeholder="e.g. admin" required>
+            </div>
+            <div class="field" style="margin-bottom: 20px;">
+                <label style="color: #94a3b8;">PASSWORD</label>
+                <input type="password" name="password" placeholder="e.g. admin123" required>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; border-radius: 6px; background-color: #e11d48; color: #ffffff;">Login as Admin</button>
+        </form>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="/login/student" style="color: #38bdf8; font-size: 0.85em; text-decoration: none;">← Switch to Student Login</a>
+        </div>
+    </div>
+</body>
+</html>

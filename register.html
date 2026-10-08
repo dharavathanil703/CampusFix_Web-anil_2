@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>REGISTER A COMPLAINT</h2>
+<p style="color: #94a3b8;">Fill in the details below — a ticket ID is generated automatically.</p>
+
+<form action="/register" method="POST" class="form-card">
+    <div class="row">
+        <div class="field">
+            <label>STUDENT NAME</label>
+            <input type="text" name="student_name" value="{{ session.get('username') }}" readonly style="background-color: #e2e8f0; color: #475569; cursor: not-allowed;">
+        </div>
+        <div class="field">
+            <label>DEPARTMENT</label>
+            <select name="department" required>
+                <option value="">Select department</option>
+                <option value="BCA">BCA</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="MCA">MCA</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="field">
+            <label>BUILDING</label>
+            <select name="building" required>
+                <option value="">Select building</option>
+                <option value="Block A">Block A</option>
+                <option value="Block B">Block B</option>
+                <option value="Block C">Block C</option>
+                <option value="Computer Lab">Computer Lab</option>
+                <option value="Library">Library</option>
+                <option value="Hostel Block">Hostel Block</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>ROOM NO.</label>
+            <input type="text" name="room_no" placeholder="e.g. 204" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="field">
+            <label>CATEGORY</label>
+            <select name="category" required>
+                <option value="">Select category</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Furniture">Furniture</option>
+                <option value="Plumbing">Plumbing</option>
+                <option value="IT">IT</option>
+                <option value="Internet">Internet</option>
+                <option value="Cleaning">Cleaning</option>
+                <option value="AC/Cooling">AC/Cooling</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>PRIORITY</label>
+            <select name="priority" required>
+                <option value="">Select priority</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="field" style="margin-bottom: 20px;">
+        <label>PROBLEM DESCRIPTION</label>
+        <textarea name="problem" rows="4" placeholder="Describe what's wrong..." required></textarea>
+    </div>
+
+    <button type="submit" class="btn-primary" style="border-radius: 6px;">Register complaint</button>
+</form>
+{% endblock %}

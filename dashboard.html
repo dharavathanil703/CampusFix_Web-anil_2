@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="margin-bottom: 30px;">
+    <h2 style="margin: 0; font-size: 1.8em;">DASHBOARD OVERVIEW</h2>
+    <p style="color: #94a3b8; margin-top: 5px;">Real-time status of campus maintenance requests.</p>
+</div>
+
+<!-- Metrics Cards -->
+<div class="metrics-grid">
+    <div class="card">
+        <span class="num">{{ total }}</span>
+        <span class="label">TOTAL COMPLAINTS</span>
+    </div>
+    <div class="card">
+        <span class="num" style="color: #f87171;">{{ pending }}</span>
+        <span class="label">PENDING</span>
+    </div>
+    <div class="card">
+        <span class="num" style="color: #fbbf24;">{{ in_progress }}</span>
+        <span class="label">IN PROGRESS</span>
+    </div>
+    <div class="card">
+        <span class="num" style="color: #34d399;">{{ resolved }}</span>
+        <span class="label">RESOLVED</span>
+    </div>
+</div>
+
+<!-- Quick Action Banner -->
+<div style="background: #1e293b; padding: 25px; border-radius: 12px; border: 1px solid #334155; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <h3 style="margin: 0; color: #38bdf8;">Have an issue on campus?</h3>
+        <p style="color: #94a3b8; margin: 5px 0 0 0;">Report electrical, plumbing, furniture, or IT issues directly to maintenance.</p>
+    </div>
+    <a href="/register" class="btn-primary">Submit a Ticket</a>
+</div>
+{% endblock %}

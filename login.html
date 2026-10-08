@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CampusFix — Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+    <div style="background: #1e293b; padding: 40px; border-radius: 12px; border: 1px solid #334155; width: 350px;">
+        <h2 style="color: #38bdf8; text-align: center; margin-top: 0;">CampusFix Login</h2>
+        
+        {% if error %}
+            <p style="color: #f87171; font-size: 0.9em; text-align: center;">{{ error }}</p>
+        {% endif %}
+
+        <form action="/login" method="POST">
+            <div class="field" style="margin-bottom: 15px;">
+                <label style="color: #94a3b8;">USERNAME</label>
+                <input type="text" name="username" placeholder="Enter username" required>
+            </div>
+            <div class="field" style="margin-bottom: 20px;">
+                <label style="color: #94a3b8;">PASSWORD</label>
+                <input type="password" name="password" placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; border-radius: 6px;">Sign In</button>
+        </form>
+
+        <div style="margin-top: 20px; font-size: 0.8em; color: #64748b; text-align: center;">
+            <p><strong>Demo Credentials:</strong></p>
+            <p>Admin: <code>admin</code> / <code>admin123</code></p>
+            <p>Student: <code>student</code> / <code>student123</code></p>
+        </div>
+    </div>
+</body>
+</html>

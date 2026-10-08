@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>ALL COMPLAINTS</h2>
+
+<form action="/tickets" method="GET" style="margin-bottom: 20px; display: flex; gap: 10px;">
+    <input type="text" name="search" placeholder="Search by Ticket ID or Name" value="{{ search_query }}" style="max-width: 300px;">
+    <button type="submit" class="btn-primary">Search</button>
+</form>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Student</th>
+            <th>Dept</th>
+            <th>Building</th>
+            <th>Room</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.complaint_id }}</td>
+            <td>{{ ticket.student_name }}</td>
+            <td>{{ ticket.department }}</td>
+            <td>{{ ticket.building }}</td>
+            <td>{{ ticket.room_no }}</td>
+            <td>{{ ticket.category }}</td>
+            <td>
+                <span class="badge priority-{{ ticket.priority | lower }}">{{ ticket.priority }}</span>
+            </td>
+            <td>
+                <span class="badge status-{{ ticket.status | lower | replace(' ', '-') }}">{{ ticket.status }}</span>
+            </td>
+            <td>
+                {% if session.get('role') == 'admin' %}
+                    <form action="/update_status/{{ ticket.complaint_id }}" method="POST">
+                        <select name="status" onchange="this.form.submit()" style="padding: 6px 10px; border-radius: 4px; background: #0f172a; color: #f8fafc; border: 1px solid #334155; cursor: pointer;">
+                            <option value="" disabled selected>Change Status</option>
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Resolved">Resolved</option>
+                        </select>
+                    </form>
+                {% else %}
+                    <span style="color: #64748b; font-size: 0.85em;">Admin Only</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="9" style="text-align: center; color: #94a3b8;">No complaints found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

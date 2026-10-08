@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <div>
+        <h2 style="margin: 0;">REPORTS & ANALYSIS</h2>
+        <p style="color: #94a3b8; margin: 5px 0 0 0;">Everything Pandas would have crunched — rendered live.</p>
+    </div>
+    <a href="/export" class="btn-secondary">Export tickets to CSV</a>
+</div>
+
+<div class="metrics-grid">
+    <div class="card"><span class="num">{{ metrics.total_complaints }}</span><span class="label">TOTAL COMPLAINTS</span></div>
+    <div class="card"><span class="num">{{ metrics.pending }}</span><span class="label">PENDING</span></div>
+    <div class="card"><span class="num">{{ metrics.in_progress }}</span><span class="label">IN PROGRESS</span></div>
+    <div class="card"><span class="num">{{ metrics.resolved }}</span><span class="label">RESOLVED</span></div>
+    <div class="card"><span class="num">₹{{ metrics.total_cost }}</span><span class="label">TOTAL MAINTENANCE COST</span></div>
+    <div class="card"><span class="num">₹{{ metrics.avg_cost }}</span><span class="label">AVERAGE REPAIR COST</span></div>
+    <div class="card"><span class="num">{{ metrics.most_common_cat }}</span><span class="label">MOST COMMON CATEGORY</span></div>
+    <div class="card"><span class="num">{{ metrics.most_reported_bldg }}</span><span class="label">MOST REPORTED BUILDING</span></div>
+</div>
+
+<div class="charts-grid">
+    <div class="chart-card">
+        <h3>COMPLAINTS BY CATEGORY</h3>
+        <canvas id="categoryChart"></canvas>
+    </div>
+    <div class="chart-card">
+        <h3>STATUS DISTRIBUTION</h3>
+        <canvas id="statusChart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% endblock %}
